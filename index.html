@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sudoku</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  </head>
+  <body>
+      <header>
+        <div>
+          <button class="btn btn-1">Easy</button>
+          <button class="btn btn-2">Medium</button>
+          <button class="btn btn-3">Hard</button>
+        </div>
+      </header>
+      <main>
+          <div>
+              <table>
+                  <tbody>
+                      <tr id="r_1">
+                          <td id="d_1"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_2"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_3"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_4"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_5"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_6"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_7"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_8"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_9"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                      </tr>
+                      <tr id="r_2">
+                          <td id="d_1"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_2"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_3"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_4"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_5"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_6"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_7"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_8"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_9"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                      </tr>
+                      <tr id="r_3">
+                          <td id="d_1"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_2"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_3"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_4"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_5"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_6"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_7"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_8"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_9"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                      </tr>
+                      <tr id="r_4">
+                          <td id="d_1"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_2"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_3"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_4"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_5"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_6"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_7"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_8"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_9"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                      </tr>
+                      <tr id="r_5">
+                          <td id="d_1"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_2"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_3"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_4"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_5"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_6"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_7"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_8"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_9"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                      </tr>
+                      <tr id="r_6">
+                          <td id="d_1"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_2"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_3"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_4"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_5"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_6"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_7"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_8"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_9"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                      </tr>
+                      <tr id="r_7">
+                          <td id="d_1"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_2"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_3"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_4"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_5"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_6"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_7"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_8"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_9"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                      </tr>
+                      <tr id="r_8">
+                          <td id="d_1"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_2"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_3"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_4"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_5"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_6"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_7"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_8"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_9"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                      </tr>
+                      <tr id="r_9">
+                          <td id="d_1"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""   ></td>
+                          <td id="d_2"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_3"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_4"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_5"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_6"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_7"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_8"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                          <td id="d_9"><input type="number" value="" class="ipt" maxlength="1" max="9" min="1" name="" id=""></td>
+                      </tr>
+                  </tbody>
+              </table>  
+          </div>
+      </main>
+      <footer>
+        <button id="solution" class="btn">Solution</button>
+        <button id="Reset" class="btn" >Reset</button>
+        <button id="validate" class="btn" >Validate</button>
+      </footer>
+      <script src="script.js"></script>
+  </body>
+</html>
