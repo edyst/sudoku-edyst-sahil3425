@@ -18,7 +18,6 @@ const hard_btn = document.querySelector(".btn-3");
 const sol = document.querySelector("#solution");
 const validateRows = () => {
   var flag = 0;
-  // console.log('row');
   for (let i = 1; i <= 9; i++) {
     var row_ar = [];
     for (let j = 1; j <= 9; j++) {
@@ -29,6 +28,7 @@ const validateRows = () => {
         if (row_ar.indexOf(ipt) == -1) 
           row_ar.push(ipt);
          else {
+          row_ar.push(ipt);
           flag = 1;
           var nmbr = document.querySelector(
             `#r_${i} #d_${row_ar.indexOf(ipt) + 1} input`
@@ -39,15 +39,18 @@ const validateRows = () => {
       } else  row_ar.push("");
       full_data[i-1]=row_ar;
     }
-    // console.log(row_ar);
   }
-console.log('flag');
+  if(diff_state=='easy')
+  localStorage.setItem('easy',JSON.stringify(full_data));
+  else if(diff_state=='mid')
+  localStorage.setItem('mid',JSON.stringify(full_data));
+  else
+  localStorage.setItem('hard',JSON.stringify(full_data));
   if (flag) return false;
   return true;
 };
 const validateColumn = () => {
     var flag = 0;
-    // console.log('row');
     for (let i = 1; i <= 9; i++) {
       var row_ar = [];
       for (let j = 1; j <= 9; j++) {
@@ -74,31 +77,20 @@ const validateColumn = () => {
 };
 const checkdata = (a,b)=>{
   var c=0;
-  
   for(var i=a;i<a+3;i++){
-    //0,1,2
     for(var j=b;j<b+3;j++){
-      //0,1,2
   for(var i1=a;i1<a+3;i1++){
-    //1,2
     for(var j1=b;j1<b+3;j1++){
-      //1,2
       if(full_data[i][j]==full_data[i1][j1]&&(i!=i1&&j!=j1)&&full_data[i1][j1]!==""){
         var ipt1 = document.querySelector(`#r_${i+1} #d_${j+1} input`);
         ipt1.style.color='red';
         ipt1 = document.querySelector(`#r_${i1+1} #d_${j1+1} input`);
         ipt1.style.color='red';
-        c++;
-      }
-    }
-  }}}
-  if(c!=0){
-    return false;
-  }
+        c++;}}}}}
+  if(c!=0)  return false;
   return true;
 }
 const validateBlocks = () => {
-  // debugger
  var c1= checkdata(0,0);
  var c2=checkdata(0,3);
  var c3=checkdata(0,6);
@@ -111,26 +103,19 @@ const validateBlocks = () => {
   if(c1&&c2&&c3&&c4&&c5&&c6&&c7&&c8&&c9)
   return true;
   return false;
- 
- 
-
-  // console.log(full_data);
 }
 const checkAns = (arr) =>{
-for(var i=0;i<9;i++){
-  for(var j=0;j<9;j++){
-    if(arr[i][j]!=full_data[i][j]){
+for(var i=0;i<9;i++)
+  for(var j=0;j<9;j++)
+    if(arr[i][j]!=full_data[i][j])
       return false;
-    }
-  }
-}
 return true;
 }
 const checkSudoku = () => {
+  localStorage.removeItem('mydata');
   var c1= validateRows();
   var c2=validateColumn();
   var c3=validateBlocks();
-  console.log(c1 + " " + c2 + " "+ c3);
   var k = false;
   if(c1&&c2&&c3){
   if(diff_state='easy')
@@ -144,8 +129,6 @@ if(k)
 swal("Good job!", "Every Thing Is Perfect 👏", "success");
 else
 swal("Wrong", "Please , try it again ", "error");
-
-
 };
 const setClass = () => {
   for (let i = 1; i <= 9; i++) {
@@ -157,6 +140,18 @@ const setClass = () => {
     }
   }
 };
+const local_Data = () =>{
+  console.log('local');
+  var data =JSON.parse(localStorage.getItem(`${diff_state}`));
+  console.log(data);
+  for (let i = 1; i <= 9; i++) {
+    for (let j = 1; j <= 9; j++) {
+      var ipt1 = document.querySelector(`#r_${i} #d_${j} input`);
+     if(data[i-1][j-1]!=ipt1.value){
+       ipt1.value = data[i-1][j-1];
+     }
+    }}
+}
 const validate = document.getElementById("validate");
 validate.addEventListener("click", checkSudoku);
 const sudoku_Setup = (arr, cnst) => {
@@ -171,23 +166,36 @@ const sudoku_Setup = (arr, cnst) => {
         ipt1.style.color = "#6B6F75";
         ipt1.className = "disable";
       } else {
-        ipt1.style.color = "#000";}}}};
+        ipt1.style.color = "#000";}}}
+      local_Data();
+      };
+      const easy_click = () =>{
+        easy_btn.style.color="#6B6F75";
+        med_btn.style.color="#000";
+        hard_btn.style.color="#000";
+      sudoku_Setup(easy_ques, "easy");
+      }
+      const mid_click = () =>{
+        easy_btn.style.color="#000";
+        med_btn.style.color="#6B6F75";
+        hard_btn.style.color="#000";
+      sudoku_Setup(mid_ques, "mid");
+      }
+      const hard_click = ()=>{
+        easy_btn.style.color="#000";
+        med_btn.style.color="#000";
+        hard_btn.style.color="#6B6F75";
+      sudoku_Setup(hard_ques, "hard");
+      }
 easy_btn.addEventListener("click", () => {
-    easy_btn.style.color="#6B6F75";
-    med_btn.style.color="#000";
-    hard_btn.style.color="#000";
-  sudoku_Setup(easy_ques, "easy");});
+  easy_click();
+});
 med_btn.addEventListener("click", () => {
-    easy_btn.style.color="#000";
-    med_btn.style.color="#6B6F75";
-    hard_btn.style.color="#000";
-  sudoku_Setup(mid_ques, "mid");});
+  mid_click();
+});
 hard_btn.addEventListener("click", () => {
-    easy_btn.style.color="#000";
-    med_btn.style.color="#000";
-    hard_btn.style.color="#6B6F75";
-  sudoku_Setup(hard_ques, "hard");});
-
+    hard_click();
+});
 sol.addEventListener("click", () => {
   if (diff_state == "easy") {
     sudoku_Setup(easy_sol, diff_state);
@@ -205,5 +213,25 @@ sol.addEventListener("click", () => {
       } else {
         sudoku_Setup(hard_ques, diff_state);}
       });
-      swal("Info", "Please , Select The Level Of Defficulty", "info");
-
+      swal("Please Select Your Difficulty Level", {
+        buttons: {
+          cancel:"Easy", 
+          catch: {
+            text: "Medium",
+            value: "mid",
+          },
+         Hard:true,
+        },
+      })
+      .then((value) => {
+        switch (value) {
+          case "Hard":
+            hard_click();
+            break;
+          case "mid":
+            mid_click();
+            break;
+          default:
+            easy_click();
+        }
+      });
