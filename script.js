@@ -147,7 +147,7 @@ const local_Data = () =>{
   for (let i = 1; i <= 9; i++) {
     for (let j = 1; j <= 9; j++) {
       var ipt1 = document.querySelector(`#r_${i} #d_${j} input`);
-     if(data[i-1][j-1]!=ipt1.value){
+     if(data[i-1][j-1]!=ipt1.value&&ipt1.value==""){
        ipt1.value = data[i-1][j-1];
      }
     }}
