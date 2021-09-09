@@ -11,7 +11,7 @@ const hard_ques = [ ["8", "", "", "7", "3", "", "", "1", ""], ["", "", "5", "", 
 const hard_sol = [ ["8", "6", "2", "7", "3", "9", "5", "1", "4"], ["3", "9", "5", "1", "8", "4", "2", "7", "6"], ["1", "4", "7", "6", "2", "5", "8", "3", "9"], ["4", "3", "9", "2", "5", "7", "6", "8", "1"], ["7", "2", "8", "9", "6", "1", "4", "5", "3"], ["6", "5", "1", "3", "4", "8", "7", "9", "2"], ["2", "8", "6", "5", "9", "3", "1", "4", "7"], ["5", "1", "3", "4", "7", "6", "9", "2", "8"], ["9", "7", "4", "8", "1", "2", "3", "6", "5"],
 ];
 var full_data=[[]];
-var diff_state = "easy";
+var diff_state = "";
 const easy_btn = document.querySelector(".btn-1");
 const med_btn = document.querySelector(".btn-2");
 const hard_btn = document.querySelector(".btn-3");
@@ -46,7 +46,10 @@ const validateRows = () => {
   localStorage.setItem('mid',JSON.stringify(full_data));
   else
   localStorage.setItem('hard',JSON.stringify(full_data));
-  if (flag) return false;
+  console.log("validateRow => ",flag);
+
+  if (flag==1) return false;
+  console.log('row = > ',true);
   return true;
 };
 const validateColumn = () => {
@@ -72,7 +75,9 @@ const validateColumn = () => {
         
       }
     }
-    if (flag) return false;
+    
+    if (flag==1) return false;
+    console.log('column = > ',true);
     return true;
 };
 const checkdata = (a,b)=>{
@@ -87,6 +92,7 @@ const checkdata = (a,b)=>{
         ipt1 = document.querySelector(`#r_${i1+1} #d_${j1+1} input`);
         ipt1.style.color='red';
         c++;}}}}}
+
   if(c!=0)  return false;
   return true;
 }
@@ -100,30 +106,39 @@ const validateBlocks = () => {
  var c7=checkdata(6,0);
  var c8=checkdata(6,3);
  var c9= checkdata(6,6);
-  if(c1&&c2&&c3&&c4&&c5&&c6&&c7&&c8&&c9)
-  return true;
+  if(c1&&c2&&c3&&c4&&c5&&c6&&c7&&c8&&c9){
+    console.log('checkdata = > ',true);
+  return true;}
   return false;
 }
 const checkAns = (arr) =>{
 for(var i=0;i<9;i++)
   for(var j=0;j<9;j++)
     if(arr[i][j]!=full_data[i][j])
-      return false;
+return false;
 return true;
 }
 const checkSudoku = () => {
-  localStorage.removeItem('mydata');
+  console.log("Difficulty state => ",diff_state);
   var c1= validateRows();
   var c2=validateColumn();
   var c3=validateBlocks();
+  console.log('diff => ',diff_state);
   var k = false;
   if(c1&&c2&&c3){
-  if(diff_state='easy')
+  if(diff_state=='easy'){
     k=checkAns(easy_sol);
-  else if(diff_state='mid')
- k= checkAns(mid_sol);
-  else
-   k= checkAns(hard_sol);
+  console.log(`${diff_state} ${k}`);
+  }
+  else if(diff_state=='mid'){
+    k= checkAns(mid_sol);
+    console.log(`${diff_state} ${k}`);
+  }
+  else if(diff_state=='hard'){
+
+    k= checkAns(hard_sol);
+    console.log(`${diff_state} ${k}`);
+  }
 }
 if(k)
 swal("Good job!", "Every Thing Is Perfect 👏", "success");
@@ -147,6 +162,7 @@ const local_Data = () =>{
   for (let i = 1; i <= 9; i++) {
     for (let j = 1; j <= 9; j++) {
       var ipt1 = document.querySelector(`#r_${i} #d_${j} input`);
+      if(data!=null)
      if(data[i-1][j-1]!=ipt1.value&&ipt1.value==""){
        ipt1.value = data[i-1][j-1];
      }
@@ -201,16 +217,21 @@ sol.addEventListener("click", () => {
     sudoku_Setup(easy_sol, diff_state);
   } else if (diff_state == "mid") {
     sudoku_Setup(mid_sol, diff_state);
-  } else {
+  } else if(diff_state=='hard'){
     sudoku_Setup(hard_sol, diff_state);}
   });
     var reset = document.getElementById('Reset');
     reset.addEventListener('click',()=>{
       if (diff_state == "easy") {
+        window.localStorage.removeItem('easy');
         sudoku_Setup(easy_ques, diff_state);
       } else if (diff_state == "mid") {
+        window.localStorage.removeItem('mid');
+
         sudoku_Setup(mid_ques, diff_state);
-      } else {
+      } else if(diff_state=='hard'){
+        window.localStorage.removeItem('hard');
+
         sudoku_Setup(hard_ques, diff_state);}
       });
       swal("Please Select Your Difficulty Level", {
@@ -226,12 +247,15 @@ sol.addEventListener("click", () => {
       .then((value) => {
         switch (value) {
           case "Hard":
+            diff_state='hard';
             hard_click();
             break;
           case "mid":
+            diff_state='mid';
             mid_click();
             break;
           default:
+            diff_state='easy';
             easy_click();
         }
       });
